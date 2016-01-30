@@ -1,6 +1,3 @@
-/**
- * 
- */
 package es.ceu.alf.simeon;
 
 import java.net.URI;

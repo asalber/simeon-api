@@ -1,6 +1,3 @@
-/**
- * 
- */
 package es.ceu.alf.simeon;
 
 import java.net.URI;
@@ -13,8 +10,8 @@ import java.net.URI;
  */
 public class StandardComparisonMeasure implements ComparisonMeasure {
   private URI uri; // The URI identifier of the comparison measure;
-  private String source; // The source object of the comparison;
-  private String target; // The target object of the comparison;
+  private Object source; // The source object of the comparison;
+  private Object target; // The target object of the comparison;
   private Float value; // The value of the comparison measure;
   private ComparisonMethod method; // The method of comparison used to compute the measure.
 
@@ -27,7 +24,7 @@ public class StandardComparisonMeasure implements ComparisonMeasure {
    * @param target
    *          is the target object of the comparison.
    */
-  public StandardComparisonMeasure(String source, String target) {
+  public StandardComparisonMeasure(Object source, Object target) {
     this.uri = null;
     this.source = source;
     this.target = target;
@@ -46,7 +43,7 @@ public class StandardComparisonMeasure implements ComparisonMeasure {
    * @param uri
    *          is the URI that identifies de comparison measure in the ontology.
    */
-  public StandardComparisonMeasure(String source, String target, URI uri) {
+  public StandardComparisonMeasure(Object source, Object target, URI uri) {
     this.uri = uri;
     this.source = source;
     this.target = target;
@@ -66,7 +63,7 @@ public class StandardComparisonMeasure implements ComparisonMeasure {
    * @param value
    *          is the value of the measure.
    */
-  public StandardComparisonMeasure(String source, String target, Float value) {
+  public StandardComparisonMeasure(Object source, Object target, Float value) {
     this.uri = null;
     this.source = source;
     this.target = target;
@@ -87,7 +84,7 @@ public class StandardComparisonMeasure implements ComparisonMeasure {
    * @param uri
    *          is the URI that identifies de comparison measure in the ontology.
    */
-  public StandardComparisonMeasure(String source, String target, Float value, URI uri) {
+  public StandardComparisonMeasure(Object source, Object target, Float value, URI uri) {
     this.uri = null;
     this.source = source;
     this.target = target;
@@ -106,7 +103,7 @@ public class StandardComparisonMeasure implements ComparisonMeasure {
    * @param method
    *          is the comparison method used to compare the source and target objects.
    */
-  public StandardComparisonMeasure(String source, String target, ComparisonMethod method) {
+  public StandardComparisonMeasure(Object source, Object target, ComparisonMethod method) {
     this.uri = null;
     this.source = source;
     this.target = target;
@@ -127,7 +124,7 @@ public class StandardComparisonMeasure implements ComparisonMeasure {
    * @param uri
    *          is the URI that identifies de comparison measure in the ontology.
    */
-  public StandardComparisonMeasure(String source, String target, ComparisonMethod method, URI uri) {
+  public StandardComparisonMeasure(Object source, Object target, ComparisonMethod method, URI uri) {
     this.uri = uri;
     this.source = source;
     this.target = target;
@@ -136,7 +133,11 @@ public class StandardComparisonMeasure implements ComparisonMeasure {
   }
 
   private void computeMeasure() {
-    this.value = this.method.getFunction().apply(this.source, this.target);
+    if (this.method != null) {
+      this.value = this.method.getFunction().apply(this.source, this.target);
+    } else {
+      this.value = null;
+    }
   }
 
   /* (non-Javadoc)
@@ -184,7 +185,8 @@ public class StandardComparisonMeasure implements ComparisonMeasure {
    */
   @Override
   public void setSourceObject(Object source) {
-    this.source = (String) source;
+    this.source = source;
+    computeMeasure();
   }
 
   /* (non-Javadoc)
@@ -192,7 +194,8 @@ public class StandardComparisonMeasure implements ComparisonMeasure {
    */
   @Override
   public void setTargetObject(Object target) {
-    this.target = (String) target;
+    this.target = target;
+    computeMeasure();
   }
 
   /* (non-Javadoc)
@@ -212,6 +215,7 @@ public class StandardComparisonMeasure implements ComparisonMeasure {
   @Override
   public void setComparisonMethod(ComparisonMethod method) {
     this.method = method;
+    computeMeasure();
   }
 
   @Override
