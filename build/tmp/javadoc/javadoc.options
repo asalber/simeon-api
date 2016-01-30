@@ -3,6 +3,7 @@
 -doctitle 'simeon-api API'
 -quiet 
 -windowtitle 'simeon-api API'
+'/media/alf/datos/drive/INVESTIGACION/doctorado/tesis/ontologias/simeon-api/src/main/java/es/ceu/alf/simeon/ComparisonMeasure.java'
+'/media/alf/datos/drive/INVESTIGACION/doctorado/tesis/ontologias/simeon-api/src/main/java/es/ceu/alf/simeon/ComparisonMethod.java'
 '/media/alf/datos/drive/INVESTIGACION/doctorado/tesis/ontologias/simeon-api/src/main/java/es/ceu/alf/simeon/Prueba.java'
-'/media/alf/datos/drive/INVESTIGACION/doctorado/tesis/ontologias/simeon-api/src/main/java/es/ceu/alf/simeon/api/ComparisonMeasure.java'
-'/media/alf/datos/drive/INVESTIGACION/doctorado/tesis/ontologias/simeon-api/src/main/java/es/ceu/alf/simeon/api/ComparisonMethod.java'
+'/media/alf/datos/drive/INVESTIGACION/doctorado/tesis/ontologias/simeon-api/src/main/java/es/ceu/alf/simeon/comparisonOntologyManager.java'
