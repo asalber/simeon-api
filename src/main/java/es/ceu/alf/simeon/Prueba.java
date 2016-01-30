@@ -1,25 +1,30 @@
 package es.ceu.alf.simeon;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.net.URI;
 
 /* @author alf
  *
  */
+/**
+ * @author Alfredo Sánchez Alberca (asalber@ceu.es)
+ *
+ */
 public class Prueba {
-  private static final Logger LOG = LoggerFactory.getLogger(Prueba.class);
   /**
    * Class prueba
    * @param args
    */
   public static void main(String[] args) {
-    for (int i = 0; i < 10; i++) {
-      if (i % 2 == 0) {
-        LOG.info("Hello {}", i);
-      } else {
-        LOG.debug("I am on index {}", i);
-      }
-    }
+    String source = "http://example.org/A";
+    String target = "http://example.org/B";
+    URI uri = URI.create("http://example.org/simAB");
+    ComparisonMeasure measure = new StandardComparisonMeasure(source, target, uri);
+    ComparisonOntologyManager ontologyManager = new JenaComparisonOntologyManager();
+    ontologyManager.addComparisonMeasure(measure);
+    ontologyManager.writeOntology("/home/alf/prueba.ttl", "TURTLE");
+
   }
 
 }
+
+

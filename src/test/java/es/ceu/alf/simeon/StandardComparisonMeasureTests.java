@@ -7,13 +7,13 @@ import org.junit.Test;
 
 import java.net.URI;
 
-/*
- * This class test the {@code StandardComparisonMeasure} class 
+/**
+ * This class test the {@code StandardComparisonMeasure} class.
+ * 
  * @see org.ceu.alf.ecollections.JenaCollectionOntology
- *
  * @author Alfredo Sánchez Alberca (asalber@ceu.es)
  */
-public class StandardComparisonMeasureTests {
+public final class StandardComparisonMeasureTests {
 
   /**
    * This test checks the default constructor for the same source and target objects creates a

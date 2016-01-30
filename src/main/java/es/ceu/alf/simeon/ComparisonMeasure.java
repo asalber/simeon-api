@@ -15,35 +15,42 @@ public interface ComparisonMeasure {
    * 
    * @return an URI identifying this comparison measure.
    */
-  public URI getUri();
+  URI getUri();
 
   /**
    * Gets the source object of the comparison measure.
    * 
    * @return the source object of the comparison measure.
    */
-  public Object getSourceObject();
+  Object getSourceObject();
 
   /**
    * Gets the target object of the comparison measure.
    * 
    * @return the target object of the comparison measure.
    */
-  public Object getTargetObject();
+  Object getTargetObject();
 
   /**
    * Gets the value of the comparison measure.
    * 
    * @return the value of the comparison measure.
    */
-  public float getValue();
+  float getValue();
 
   /**
    * Gets the comparison method used to compute the comparison measure.
    * 
    * @return the comparison method used to compute the comparison measure.
    */
-  public ComparisonMethod getComparisonMethod();
+  ComparisonMethod getComparisonMethod();
+
+  /**
+   * Gets the agent that assessed the comparison measure.
+   * 
+   * @return the URI of the agent that assessed the comparison measure.
+   */
+  URI getAgent();
 
   /**
    * Sets the URI of the comparison measure.
@@ -51,7 +58,7 @@ public interface ComparisonMeasure {
    * @param uri
    *          is the URI of the comparison measure.
    */
-  public void setUri(URI uri);
+  void setUri(URI uri);
 
   /**
    * Sets the source object of the comparison measure.
@@ -59,7 +66,7 @@ public interface ComparisonMeasure {
    * @param source
    *          is the source object of the comparison.
    */
-  public void setSourceObject(Object source);
+  void setSourceObject(Object source);
 
   /**
    * Sets the target object of the comparison.
@@ -67,7 +74,7 @@ public interface ComparisonMeasure {
    * @param target
    *          is the target object of the comparison.
    */
-  public void setTargetObject(Object target);
+  void setTargetObject(Object target);
 
   /**
    * Sets the value of the comparison measure.
@@ -75,15 +82,22 @@ public interface ComparisonMeasure {
    * @param value
    *          is the value of the comparison measure.
    */
-  public void setValue(Float value);
+  void setValue(Float value);
 
   /**
    * Sets the comparison method of the comparison measure.
    * 
    * @param method
-   *          is the method used to compute the comparison method.
+   *          is the method used to compute the comparison measure.
    */
-  public void setComparisonMethod(ComparisonMethod method);
+  void setComparisonMethod(ComparisonMethod method);
 
+  /**
+   * Sets the agent that assess the comparison measure.
+   * 
+   * @param agent
+   *          is the URI of the agent that assess the comparison measure.
+   */
+  void setAgent(URI agent);
 
 }

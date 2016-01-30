@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="es.ceu.alf.simeon.StandardComparisonMeasureTests" tests="3" skipped="0" failures="0" errors="0" timestamp="2016-01-30T19:18:48" hostname="alf-laptop" time="0.049">
+  <properties/>
+  <testcase name="defaultConstructorEqualObjectsTest" classname="es.ceu.alf.simeon.StandardComparisonMeasureTests" time="0.048"/>
+  <testcase name="defaultConstructorDifferentObjectsTest" classname="es.ceu.alf.simeon.StandardComparisonMeasureTests" time="0.0"/>
+  <testcase name="setTargetObjectTheSameThanSourceObjectTest" classname="es.ceu.alf.simeon.StandardComparisonMeasureTests" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

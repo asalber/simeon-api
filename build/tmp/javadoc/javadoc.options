@@ -3,7 +3,11 @@
 -doctitle 'simeon-api API'
 -quiet 
 -windowtitle 'simeon-api API'
+'/media/alf/datos/drive/INVESTIGACION/doctorado/tesis/ontologias/simeon-api/src/main/java/es/ceu/alf/simeon/JenaComparisonOntologyManager.java'
+'/media/alf/datos/drive/INVESTIGACION/doctorado/tesis/ontologias/simeon-api/src/main/java/es/ceu/alf/simeon/StandardComparisonMeasure.java'
+'/media/alf/datos/drive/INVESTIGACION/doctorado/tesis/ontologias/simeon-api/src/main/java/es/ceu/alf/simeon/ComparisonOntologyManager.java'
+'/media/alf/datos/drive/INVESTIGACION/doctorado/tesis/ontologias/simeon-api/src/main/java/es/ceu/alf/simeon/StandardComparisonMethod.java'
 '/media/alf/datos/drive/INVESTIGACION/doctorado/tesis/ontologias/simeon-api/src/main/java/es/ceu/alf/simeon/ComparisonMeasure.java'
 '/media/alf/datos/drive/INVESTIGACION/doctorado/tesis/ontologias/simeon-api/src/main/java/es/ceu/alf/simeon/ComparisonMethod.java'
+'/media/alf/datos/drive/INVESTIGACION/doctorado/tesis/ontologias/simeon-api/src/main/java/es/ceu/alf/simeon/package-info.java'
 '/media/alf/datos/drive/INVESTIGACION/doctorado/tesis/ontologias/simeon-api/src/main/java/es/ceu/alf/simeon/Prueba.java'
-'/media/alf/datos/drive/INVESTIGACION/doctorado/tesis/ontologias/simeon-api/src/main/java/es/ceu/alf/simeon/comparisonOntologyManager.java'

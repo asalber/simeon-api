@@ -8,93 +8,36 @@ import java.net.URI;
  * @author Alfredo Sánchez Alberca (asalber@ceu.es)
  *
  */
-public class StandardComparisonMeasure implements ComparisonMeasure {
-  private URI uri; // The URI identifier of the comparison measure;
-  private Object source; // The source object of the comparison;
-  private Object target; // The target object of the comparison;
-  private Float value; // The value of the comparison measure;
-  private ComparisonMethod method; // The method of comparison used to compute the measure.
-
+public final class StandardComparisonMeasure implements ComparisonMeasure {
   /**
-   * Constructor for comparison measures. It creates a comparison measure for the source and target
-   * objects given with the identity function as a comparison method;
-   * 
-   * @param source
-   *          is the source object of the comparison.
-   * @param target
-   *          is the target object of the comparison.
+   * The URI identifier of the comparison measure.
    */
-  public StandardComparisonMeasure(Object source, Object target) {
-    this.uri = null;
-    this.source = source;
-    this.target = target;
-    this.method = new StandardComparisonMethod();
-    computeMeasure();
-  }
-
+  private URI uri;
   /**
-   * Constructor for comparison measures. It creates a comparison measure for the source and target
-   * objects given with the uri given and identity function as a comparison method;
-   * 
-   * @param source
-   *          is the source object of the comparison.
-   * @param target
-   *          is the target object of the comparison.
-   * @param uri
-   *          is the URI that identifies de comparison measure in the ontology.
+   * The source object of the comparison.
    */
-  public StandardComparisonMeasure(Object source, Object target, URI uri) {
-    this.uri = uri;
-    this.source = source;
-    this.target = target;
-    this.method = new StandardComparisonMethod();
-    computeMeasure();
-  }
-
-
+  private Object source;
   /**
-   * Constructor for comparison measures. It creates a comparison measure for the source and target
-   * objects given with a given value and no comparison method.
-   * 
-   * @param source
-   *          is the source object of the comparison.
-   * @param target
-   *          is the target object of the comparison.
-   * @param value
-   *          is the value of the measure.
+   * The target object of the comparison.
    */
-  public StandardComparisonMeasure(Object source, Object target, Float value) {
-    this.uri = null;
-    this.source = source;
-    this.target = target;
-    this.value = value;
-    this.method = null;
-  }
-
+  private Object target;
   /**
-   * Constructor for comparison measures. It creates a comparison measure for the source and target
-   * objects given with a given value and uri and no comparison method.
-   * 
-   * @param source
-   *          is the source object of the comparison.
-   * @param target
-   *          is the target object of the comparison.
-   * @param value
-   *          is the value of the measure.
-   * @param uri
-   *          is the URI that identifies de comparison measure in the ontology.
+   * The value of the comparison measure.
    */
-  public StandardComparisonMeasure(Object source, Object target, Float value, URI uri) {
-    this.uri = null;
-    this.source = source;
-    this.target = target;
-    this.value = value;
-    this.method = null;
-  }
+  private Float value;
+  /**
+   * The method of comparison used to compute the measure.
+   */
+  private ComparisonMethod method;
+  /**
+   * The URI of the agent that assess the comparison measure.
+   */
+  private URI agent;
+
 
   /**
    * Constructor for comparison measures. It creates a comparison measure for the source and target
-   * objects given with a given value and uri and no comparison method.
+   * objects given with the method, URI and agent given.
    * 
    * @param source
    *          is the source object of the comparison.
@@ -102,18 +45,52 @@ public class StandardComparisonMeasure implements ComparisonMeasure {
    *          is the target object of the comparison.
    * @param method
    *          is the comparison method used to compare the source and target objects.
+   * @param uri
+   *          is the URI that identifies the comparison measure in the ontology.
+   * @param agent
+   *          is the URI of the agent that assess the comparison measure.
    */
-  public StandardComparisonMeasure(Object source, Object target, ComparisonMethod method) {
-    this.uri = null;
+  public StandardComparisonMeasure(final Object source, final Object target, final ComparisonMethod method,
+      final URI uri, final URI agent) {
     this.source = source;
     this.target = target;
-    this.method = method;
+    this.method = new StandardComparisonMethod();
+    this.uri = uri;
+    this.agent = agent;
     computeMeasure();
   }
 
   /**
    * Constructor for comparison measures. It creates a comparison measure for the source and target
-   * objects given with a given value and uri and no comparison method.
+   * objects given with the identity function as a comparison method.
+   * 
+   * @param source
+   *          is the source object of the comparison.
+   * @param target
+   *          is the target object of the comparison.
+   */
+  public StandardComparisonMeasure(final Object source, final Object target) {
+    this(source, target, new StandardComparisonMethod(), null, null);
+  }
+
+  /**
+   * Constructor for comparison measures. It creates a comparison measure for the source and target
+   * objects given with the URI given and identity function as a comparison method.
+   * 
+   * @param source
+   *          is the source object of the comparison.
+   * @param target
+   *          is the target object of the comparison.
+   * @param uri
+   *          is the URI that identifies the comparison measure in the ontology.
+   */
+  public StandardComparisonMeasure(final Object source, final Object target, final URI uri) {
+    this(source, target, new StandardComparisonMethod(), uri, null);
+  }
+
+  /**
+   * Constructor for comparison measures. It creates a comparison measure for the source, the target
+   * objects, the comparison method and the URI given.
    * 
    * @param source
    *          is the source object of the comparison.
@@ -124,14 +101,72 @@ public class StandardComparisonMeasure implements ComparisonMeasure {
    * @param uri
    *          is the URI that identifies de comparison measure in the ontology.
    */
-  public StandardComparisonMeasure(Object source, Object target, ComparisonMethod method, URI uri) {
-    this.uri = uri;
-    this.source = source;
-    this.target = target;
-    this.method = method;
-    computeMeasure();
+  public StandardComparisonMeasure(final Object source, final Object target, final ComparisonMethod method,
+      final URI uri) {
+    this(source, target, method, uri, null);
   }
 
+  /**
+   * Constructor for comparison measures. It creates a comparison measure for the source, the target
+   * objects and the comparison method given.
+   * 
+   * @param source
+   *          is the source object of the comparison.
+   * @param target
+   *          is the target object of the comparison.
+   * @param method
+   *          is the comparison method used to compare the source and target objects.
+   */
+  public StandardComparisonMeasure(final Object source, final Object target, final ComparisonMethod method) {
+    this(source, target, method, null, null);
+  }
+  
+  /**
+   * Constructor for comparison measures. It creates a comparison measure for the source, the target
+   * objects, the value, the URI and the agent given and no comparison method.
+   * 
+   * @param source
+   *          is the source object of the comparison.
+   * @param target
+   *          is the target object of the comparison.
+   * @param value
+   *          is the value of the measure.
+   * @param uri
+   *          is the URI that identifies the comparison measure in the ontology.
+   * @param agent
+   *          is the URI of the agent that assess the comparison measure.
+   */
+  public StandardComparisonMeasure(final Object source, final Object target, final Float value, final URI uri,
+      final URI agent) {
+    this.source = source;
+    this.target = target;
+    this.value = value;
+    this.method = null;
+    this.uri = uri;
+    this.agent = agent;
+  }
+
+  /**
+   * Constructor for comparison measures. It creates a comparison measure for the source and target
+   * objects given with a given value and URI and no comparison method.
+   * 
+   * @param source
+   *          is the source object of the comparison.
+   * @param target
+   *          is the target object of the comparison.
+   * @param value
+   *          is the value of the measure.
+   * @param uri
+   *          is the URI that identifies the comparison measure in the ontology.
+   */
+  public StandardComparisonMeasure(final Object source, final Object target, final Float value, final URI uri) {
+    this(source, target, value, uri, null);
+  }
+
+
+  /**
+   * Method that computes the comparison measure with the comparison method if there are one.
+   */
   private void computeMeasure() {
     if (this.method != null) {
       this.value = this.method.getFunction().apply(this.source, this.target);
@@ -141,19 +176,11 @@ public class StandardComparisonMeasure implements ComparisonMeasure {
   }
 
   /* (non-Javadoc)
-   * @see es.ceu.alf.simeon.ComparisonMeasure#getUri()
-   */
-  @Override
-  public URI getUri() {
-    return this.uri;
-  }
-
-  /* (non-Javadoc)
    * @see es.ceu.alf.simeon.ComparisonMeasure#getSourceObject()
    */
   @Override
   public Object getSourceObject() {
-    return source;
+    return this.source;
   }
 
   /* (non-Javadoc)
@@ -161,7 +188,7 @@ public class StandardComparisonMeasure implements ComparisonMeasure {
    */
   @Override
   public Object getTargetObject() {
-    return target;
+    return this.target;
   }
 
   /* (non-Javadoc)
@@ -169,7 +196,7 @@ public class StandardComparisonMeasure implements ComparisonMeasure {
    */
   @Override
   public float getValue() {
-    return value;
+    return this.value;
   }
 
   /* (non-Javadoc)
@@ -177,50 +204,90 @@ public class StandardComparisonMeasure implements ComparisonMeasure {
    */
   @Override
   public ComparisonMethod getComparisonMethod() {
-    return method;
+    return this.method;
   }
 
-  /* (non-Javadoc)
+  /*
+   * (non-Javadoc)
+   * 
+   * @see es.ceu.alf.simeon.ComparisonMeasure#getUri()
+   */
+  @Override
+  public URI getUri() {
+    return this.uri;
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see es.ceu.alf.simeon.ComparisonMeasure#getAgent()
+   */
+  @Override
+  public URI getAgent() {
+    return this.agent;
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
    * @see es.ceu.alf.simeon.ComparisonMeasure#setSourceObject(java.lang.Object)
    */
   @Override
-  public void setSourceObject(Object source) {
+  public void setSourceObject(final Object source) {
     this.source = source;
     computeMeasure();
   }
 
-  /* (non-Javadoc)
+  /*
+   * (non-Javadoc)
+   * 
    * @see es.ceu.alf.simeon.ComparisonMeasure#setTargetObject(java.lang.Object)
    */
   @Override
-  public void setTargetObject(Object target) {
+  public void setTargetObject(final Object target) {
     this.target = target;
     computeMeasure();
   }
 
-  /* (non-Javadoc)
+  /*
+   * (non-Javadoc)
+   * 
    * @see es.ceu.alf.simeon.ComparisonMeasure#setValue(float)
    */
   @Override
-  public void setValue(Float value) {
+  public void setValue(final Float value) {
     this.value = value;
   }
 
   /*
    * (non-Javadoc)
    * 
-   * @see
-   * es.ceu.alf.simeon.ComparisonMeasure#setComparisonMethod(es.ceu.alf.simeon.ComparisonMethod)
+   * @see es.ceu.alf.simeon.ComparisonMeasure#setComparisonMethod(es.ceu.alf.simeon.ComparisonMethod)
    */
   @Override
-  public void setComparisonMethod(ComparisonMethod method) {
+  public void setComparisonMethod(final ComparisonMethod method) {
     this.method = method;
     computeMeasure();
   }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see es.ceu.alf.simeon.ComparisonMeasure#setUri(java.net.URI)
+   */
   @Override
-  public void setUri(URI uri) {
+  public void setUri(final URI uri) {
     this.uri = uri;
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see es.ceu.alf.simeon.ComparisonMeasure#setAgent(java.net.URI)
+   */
+  @Override
+  public void setAgent(final URI agent) {
+    this.agent = agent;
   }
 
 }
